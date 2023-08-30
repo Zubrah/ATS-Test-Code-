@@ -1,0 +1,51 @@
+<!-- views/jobDescriptions.ejs -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tech Talent Sevier</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+  <body>
+    <h1>Job Descriptions from ATS</h1>
+    <p>
+      <strong>Number of Records:</strong> <%=
+      softwareEngineerJobDescriptions.length %>
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Job Title</th>
+          <th>Location</th>
+          <th>Job Category</th>
+          <th>Job Description</th>
+          <th>JD File</th>
+          <th>Minimum Experience</th>
+          <th>Job Status</th>
+          <th>Application Link</th>
+          <!-- Add more table header columns for other properties -->
+        </tr>
+      </thead>
+      <tbody>
+        <% softwareEngineerJobDescriptions.forEach(job => { %>
+        <tr>
+          <td><%= job.id %></td>
+          <td><%= job.name %></td>
+          <td><%= job.country %></td>
+          <td><%= job.job_category %></td>
+          <td><%= job.job_description_text%></td>
+          <td><%= job.job_description_file%></td>
+          <td><%= job.minimum_experience %></td>
+          <td><%= job.job_status.label %></td>
+          <td>
+            <% if (job.application_form_url && job.application_form_url) { %>
+            <a href="<%= job.application_form_url %>" target="_blank">Apply</a>
+            <% } else { %> No Application <% } %>
+          </td>
+          <!-- Add more table cells for other properties -->
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<!-- views/softwareEngineeringCVs.ejs -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tech Talent Sievier</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+  <body>
+    <h1>Software Engineering CVs extracted from ATS</h1>
+    <p>
+      <strong>Number of Records:</strong> <%= softwareEngineeringCVs.length %>
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Full Name</th>
+          <th>Email</th>
+          <th>Country</th>
+          <th>Work experience</th>
+          <th>Resume</th>
+          <th>Position</th>
+          <th>Skills</th>
+          <!-- Add more table header columns for other properties -->
+        </tr>
+      </thead>
+      <tbody>
+        <% softwareEngineeringCVs.forEach(cv => { %>
+        <tr>
+          <td><%= cv.id %></td>
+          <td><%= cv.first_name %> <%= cv.last_name %></td>
+          <td><%= cv.email %></td>
+          <td><%= cv.country %></td>
+          <td><%= cv.work_ex_year %></td>
+          <td>
+            <% if (cv.resume && cv.resume.file_link) { %>
+            <a href="<%= cv.resume.file_link %>" target="_blank">View Resume</a>
+            <% } else { %> No Resume Available <% } %>
+          </td>
+          <td><%= cv.position %></td>
+          <td><%= cv.skill %></td>
+          <!-- Add more table cells for other properties -->
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </body>
+</html>
